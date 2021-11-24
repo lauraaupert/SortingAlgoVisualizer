@@ -3,6 +3,7 @@ import { useMediaQuery } from 'react-responsive'
 import './visualizer.css'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import Row from 'react-bootstrap/Row'
 
 import heapSort from '../algorithms/heapSort'
 import selectionSort from '../algorithms/selectionSort'
@@ -84,9 +85,17 @@ function Visualizer() {
             <Button variant="light" size="sm" onClick={() => selectionSort(fullArray, speed)}>Selection Sort</Button>
             <Button variant="light" size="sm" onClick={() => quickSort(fullArray, speed)}>Quick Sort</Button>
             {tablet ? 
-            // return(
+            <>
                 <Button variant="light" size="sm" onClick={makeArray}>New Array</Button>
-            // )
+            {/* // ) */}
+            {/* <Form.Label style={{color: "white", marginBottom: "0px"}}>Speed</Form.Label> */}
+            <Row style={{display: "flex", alignItems:"center", justifyContent: "center"}}>
+            <Form.Range style={{width: "60vw", color: "white", height: ".8rem"}} min={1} max={500} value={speed}
+                onChange={changeEvent => setSpeed(changeEvent.target.value)}
+            />
+            </Row>
+            </>
+
             :
             // return(  display: "flex", flexDirection: "column",
             <div style={{display: {isTablet}, position: "absolute", top: "0vh", right: "2vh"}}>
