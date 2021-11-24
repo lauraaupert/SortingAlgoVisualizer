@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/SortingAlgoVisualizer/static/css/main.569f1cf2.chunk.css",
+    "main.js": "/SortingAlgoVisualizer/static/js/main.97e98ed2.chunk.js",
+    "main.js.map": "/SortingAlgoVisualizer/static/js/main.97e98ed2.chunk.js.map",
+    "runtime-main.js": "/SortingAlgoVisualizer/static/js/runtime-main.ae10bdce.js",
+    "runtime-main.js.map": "/SortingAlgoVisualizer/static/js/runtime-main.ae10bdce.js.map",
+    "static/css/2.383c0125.chunk.css": "/SortingAlgoVisualizer/static/css/2.383c0125.chunk.css",
+    "static/js/2.8c4cbcac.chunk.js": "/SortingAlgoVisualizer/static/js/2.8c4cbcac.chunk.js",
+    "static/js/2.8c4cbcac.chunk.js.map": "/SortingAlgoVisualizer/static/js/2.8c4cbcac.chunk.js.map",
+    "static/js/3.cc33ead7.chunk.js": "/SortingAlgoVisualizer/static/js/3.cc33ead7.chunk.js",
+    "static/js/3.cc33ead7.chunk.js.map": "/SortingAlgoVisualizer/static/js/3.cc33ead7.chunk.js.map",
+    "index.html": "/SortingAlgoVisualizer/index.html",
+    "static/css/2.383c0125.chunk.css.map": "/SortingAlgoVisualizer/static/css/2.383c0125.chunk.css.map",
+    "static/css/main.569f1cf2.chunk.css.map": "/SortingAlgoVisualizer/static/css/main.569f1cf2.chunk.css.map",
+    "static/js/2.8c4cbcac.chunk.js.LICENSE.txt": "/SortingAlgoVisualizer/static/js/2.8c4cbcac.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ae10bdce.js",
+    "static/css/2.383c0125.chunk.css",
+    "static/js/2.8c4cbcac.chunk.js",
+    "static/css/main.569f1cf2.chunk.css",
+    "static/js/main.97e98ed2.chunk.js"
+  ]
+}
