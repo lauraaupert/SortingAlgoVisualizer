@@ -16,6 +16,7 @@ function Visualizer() {
 
     const [madArray, setMadArray] = useState([])
     const [speed, setSpeed] = useState(1);
+    const [disable, setDisable] = useState(false)
 
     const [tablet, setTablet] = useState(useMediaQuery({ query: '(max-width: 800px)' }))
 
@@ -34,6 +35,18 @@ function Visualizer() {
 
     function makeArray(e) {
         window.location.reload();
+    }
+
+    function hSort(array, speed) {
+        setDisable(true);
+        let countdown = array.length * speed;
+        console.log(countdown)
+
+        heapSort(array, speed);
+        setTimeout(() => {
+            setDisable(false)
+        }, array.length * speed * 20);
+    
     }
 
     function generateArray() {
@@ -57,9 +70,10 @@ function Visualizer() {
     }
 
     function bubbleSort(array, speed) {
+        setDisable(true)
+        let countdown = array.length * speed;
 
         for (let i = 0; i < array.length - 1; i++) {
-
             for (let j = 0; j < array.length -1; j++ ) {
                 setTimeout(() => {
                     if (array[j] > array[j + 1]) {
@@ -72,6 +86,9 @@ function Visualizer() {
                 }, i * speed)
             }
         }
+        setTimeout(() => {
+            setDisable(false)
+        }, countdown);
     }
 
         
@@ -81,7 +98,7 @@ function Visualizer() {
         <div>
         <div className="options">
             <Button variant="light" size="sm" onClick={() => bubbleSort(fullArray, speed)}>Bubble Sort</Button>
-            <Button variant="light" size="sm" onClick={() => heapSort(fullArray, speed)}>Heap Sort</Button>
+            <Button variant="light" size="sm" onClick={() => hSort(fullArray, speed)}>Heap Sort</Button>
             <Button variant="light" size="sm" onClick={() => selectionSort(fullArray, speed)}>Selection Sort</Button>
             <Button variant="light" size="sm" onClick={() => quickSort(fullArray, speed)}>Quick Sort</Button>
             {tablet ? 
@@ -90,7 +107,7 @@ function Visualizer() {
             {/* // ) */}
             {/* <Form.Label style={{color: "white", marginBottom: "0px"}}>Speed</Form.Label> */}
             <Row style={{display: "flex", alignItems:"center", justifyContent: "center"}}>
-            <Form.Range style={{width: "60vw", color: "white", height: ".8rem"}} min={1} max={500} value={speed}
+            <Form.Range disabled={disable} style={{width: "60vw", color: "white", height: ".8rem"}} min={1} max={500} value={speed}
                 onChange={changeEvent => setSpeed(changeEvent.target.value)}
             />
             </Row>

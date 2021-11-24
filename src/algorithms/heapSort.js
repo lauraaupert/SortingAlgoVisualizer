@@ -1,6 +1,8 @@
 let colorArray = [];
 
 function heapSort(array, speed) {
+    let countdown = array.length * speed;
+
     let length = array.length;
     let i = Math.floor(length / 2 - 1);
     let k = length - 1;
@@ -56,7 +58,6 @@ function heapSort(array, speed) {
         //         setMadArray(array)
         //     }, colorArray.length * 20)
         })        
-            
     return array;	
 }
 
