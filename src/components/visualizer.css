@@ -1,7 +1,6 @@
 .array-container {
     position: fixed;
     align-self: center;
-    /* height: 80vh; */
     width: 100vw;
     bottom: 0vh;
     display: flex;
@@ -9,22 +8,17 @@
 }
 
 .array-bar {
-    /* position: absolute; */
     width: .7vw;
     background-color: white;
     display: inline-block;
     margin: 0 1px;
-    /* bottom: 0vh; */
-
 }
 
 .options {
     position: absolute;
     z-index: -1;
-    /* display: flex; */
     top: 10vh;
     width: 100vw;
-    /* margin-bottom: 20vh; */
 }
 
 .btn {
@@ -34,7 +28,6 @@
 }
 
 .array {
-    /* position: absolute; */
     bottom: 0vh;
 }
 

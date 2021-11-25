@@ -2,26 +2,22 @@ let colorArray = [];
 
 function selectionSort(array, speed, disable) {
     let counter = array.length - 1;
-      while (counter > 0) {
-          let biggest = 0;
-          for (let i = 0; i <= counter; i++) {
-              colorArray.push([i, biggest, array[i], array[biggest]])
-              if (array[i] > array[biggest]) biggest = i;
-          }
-          [array[biggest], array[counter]] = [array[counter], array[biggest]]
-          counter--;
-      }
-      runColors(colorArray, speed)
-          // disable.setDisable(true)
-
-      // setTimeout(() => {
-      //   disable.setDisable(false)
-      // }, array.length * speed * 20);
-      return array;
-  }
-
-  function runColors(array, speed) {
     
+    while (counter > 0) {
+        let biggest = 0;
+        for (let i = 0; i <= counter; i++) {
+            colorArray.push([i, biggest, array[i], array[biggest]])
+            if (array[i] > array[biggest]) biggest = i;
+        }
+        [array[biggest], array[counter]] = [array[counter], array[biggest]]
+        counter--;
+    }
+
+    runColors(colorArray, speed)
+    return array;
+}
+
+function runColors(array, speed) {
     let begin = 0;
 
     for (let num = 0; num < array.length; num++) {
@@ -33,9 +29,9 @@ function selectionSort(array, speed, disable) {
               barCurrent.style.backgroundColor = "orange";
               barBiggest.style.backgroundColor = "turquoise";
               if (begin !== biggest) {
-                  const barStart = document.getElementById(begin);
-                  barStart.style.backgroundColor = "white";
-                  begin = biggest;
+                const barStart = document.getElementById(begin);
+                barStart.style.backgroundColor = "white";
+                begin = biggest;
               }
               if (num === array.length - 1) {
                 const lastBar = document.getElementById(1);
@@ -60,8 +56,6 @@ function selectionSort(array, speed, disable) {
               }
         }, num * speed)
     }
-  }
+}
 
-
-
-  export default selectionSort;
+export default selectionSort;

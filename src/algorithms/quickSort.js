@@ -1,23 +1,18 @@
 const colorArray = [];
 
 function quickSort(array, speed, disable) {
-  // disable.setDisable(true)
-
     quickSortHelper(array, 0, array.length - 1);
     runColors(colorArray, speed)
-    // setTimeout(() => {
-    //   disable.setDisable(false)
-    // }, array.length * speed * 35);
-      return array;
+    return array;
   }
   
   function quickSortHelper(array, startIdx, endIdx) {
-      if (startIdx >= endIdx) {
-          return;
-      }
+      if (startIdx >= endIdx) return;
+
       let pivot = startIdx;
       let left = startIdx + 1;
       let right = endIdx;
+
       while (right >= left) {
           if (array[left] > array[pivot] && array[right] < array[pivot]) {
             swap(left, right, array)
@@ -36,6 +31,7 @@ function quickSort(array, speed, disable) {
       swap(pivot, right, array)
       colorArray.push([pivot, left, right, array[pivot], array[left], array[right]])
       let leftSubarrayIsSmaller = right - 1 - startIdx < endIdx - (right + 1)
+
       //call the recursion on the smallest subarray first so tail recursion can handle the extra space 
       if (leftSubarrayIsSmaller) {
           quickSortHelper(array, startIdx, right - 1);
@@ -48,7 +44,7 @@ function quickSort(array, speed, disable) {
 
   function runColors(array, speed) {
     for (let i = 0; i < array.length; i++) {
-          setTimeout(() => {
+        setTimeout(() => {
             const item = array[i]
             if (item[0] === 100 || item[1] === 100 || item[2] === 100) return;
             let pivot = item[0];
@@ -70,16 +66,14 @@ function quickSort(array, speed, disable) {
               barLeft.style.height = `${leftHeight}px`;
               barRight.style.height = `${rightHeight}px`;
               setTimeout(() => {
-                // barPivot.style.backgroundColor = "white";
                 barLeft.style.backgroundColor = "white";
                 barRight.style.backgroundColor = "white";
                 barPivot.style.backgroundColor = "white";
-  
               }, speed)
-  
             }, speed * 2);
-          }, i * speed * 4)
-        }}
+        }, i * speed * 4)
+    }
+  }
 
   function swap(i, j, array) {
       [array[i], array[j]] = [array[j], array[i]]

@@ -13,24 +13,17 @@ import bubbleSort from '../algorithms/bubbleSort'
 
 function Visualizer() {
     const [fullArray, setArray] = useState([]);
-    // const [colorRight, setColorRight] = useState();
-
     const [madArray, setMadArray] = useState([])
     const [speed, setSpeed] = useState(1);
     const [disable, setDisable] = useState(false)
-    // const [coverDiv, setCoverDiv] = useState("none")
-    // console.log(coverDiv)
-    // const coverDiv = document.getElementById("coverDiv")
+    const [tablet, setTablet] = useState(useMediaQuery({ query: '(max-width: 800px)' }))
+
     const options = document.getElementById("options")
     const stop = document.getElementById("stop")
-
-    const [tablet, setTablet] = useState(useMediaQuery({ query: '(max-width: 800px)' }))
 
     let isTablet;
     if (tablet) isTablet = "none"
     else isTablet = "block"
-
-    console.log(speed)
 
     useEffect(() => {
         generateArray();
@@ -59,28 +52,14 @@ function Visualizer() {
         return Math.floor(Math.random() * (max - min + 1) + min)
     }
 
-
-    // function onSubmit(e) {
-    //     e.preventDefault();
-    //             setDisable(true);
-    //     setTimeout(() => {
-    //         setDisable(false)
-    //     }, fullArray.length * speed * 20);
-
-    // }
-
     function disabling() {
-        console.log(disable, speed)
         options.style.display = "none"
         stop.style.display = "block"
         setTimeout(() => {
             options.style.display = "block"
             stop.style.display = "none"
         }, speed * fullArray.length * 40);
-        // setCoverDiv("block")
-        console.log(disable, speed)
     }
-    console.log(document.getElementById("coverDiv"))
     
 
         
@@ -89,71 +68,52 @@ function Visualizer() {
     return( 
         <div>
             <div id="stop" style={{display: "none"}}>
-            <Button variant="light" size="sm" onClick={makeArray}>Go Back</Button>
-
+                <Button variant="light" size="sm" onClick={makeArray}>Go Back</Button>
             </div>
-        <div className="options" id="options">
-            <div onClick={() => disabling()}>
-            <Button variant="light" size="sm" onClick={() => bubbleSort(fullArray, speed, {setDisable})}>Bubble Sort</Button>
-            <Button variant="light" size="sm" onClick={() => heapSort(fullArray, speed, {setDisable})}>Heap Sort</Button>
-            <Button variant="light" size="sm" onClick={() => selectionSort(fullArray, speed, {setDisable})}>Selection Sort</Button>
-            <Button variant="light" size="sm" onClick={() => quickSort(fullArray, speed, {setDisable})}>Quick Sort</Button>
-            </div>
-            {tablet ? 
-            <>
-                <Button variant="light" size="sm" onClick={makeArray}>New Array</Button>
-            {/* // ) */}
-            {/* <Form.Label style={{color: "white", marginBottom: "0px"}}>Speed</Form.Label> */}
-            <Row style={{display: "flex", alignItems:"center", justifyContent: "center"}}>
-            <Form.Range disabled={disable} style={{width: "60vw", color: "white", height: ".8rem"}} min={1} max={100} value={speed}
-                onChange={changeEvent => setSpeed(changeEvent.target.value)}
-            />
-            </Row>
-            </>
-
-            :
-            // return(  display: "flex", flexDirection: "column",
-            <div style={{display: {isTablet}, position: "absolute", top: "0vh", right: "2vh"}}>
-            <Button variant="light" size="sm" onClick={makeArray}>New Array</Button>
-
-                <Form.Label style={{color: "white", marginBottom: "0px"}}>Speed</Form.Label>
-                <Form.Range disabled={disable} style={{zIndex: "-2", width: "10vw", color: "white", height: ".8rem"}} min={1} max={100} value={speed}
-                    onChange={changeEvent => setSpeed(changeEvent.target.value)}
-                />
-            </div>
-            // )
-            }
-            {/* < /Form> */}
-            {/* <div style={{position: "absolute", display: "flex", flexDirection: "column", top: "0vh", right: "2vh"}}>
-            <Button variant="light" size="sm" onClick={makeArray}>New Array</Button>
-
-                <Form.Label style={{color: "white", marginBottom: "0px"}}>Speed</Form.Label>
-                <Form.Range style={{width: "10vw", color: "white", height: ".8rem"}} min={1} max={500} value={speed}
-                    onChange={changeEvent => setSpeed(changeEvent.target.value)}
-                />
-            </div> */}
-
-        </div>
-
-        <div className="array-container">
-            {madArray !== undefined &&
-                    <div className="array">
-                    {madArray.map((value, idx) => {
-                        return (
-                            <div 
-                            className="array-bar" 
-                            key={idx}
-                            id={idx}
-                            style={{height: `${value}px`}}
-                            >
-                            </div>                        
-                        )
-                        })}
+            <div className="options" id="options">
+                <div onClick={() => disabling()}>
+                    <Button variant="light" size="sm" onClick={() => bubbleSort(fullArray, speed, {setDisable})}>Bubble Sort</Button>
+                    <Button variant="light" size="sm" onClick={() => heapSort(fullArray, speed, {setDisable})}>Heap Sort</Button>
+                    <Button variant="light" size="sm" onClick={() => selectionSort(fullArray, speed, {setDisable})}>Selection Sort</Button>
+                    <Button variant="light" size="sm" onClick={() => quickSort(fullArray, speed, {setDisable})}>Quick Sort</Button>
+                </div>
+                {tablet ? 
+                    <>
+                        <Button variant="light" size="sm" onClick={makeArray}>New Array</Button>
+                        <Row style={{display: "flex", alignItems:"center", justifyContent: "center"}}>
+                            <Form.Range disabled={disable} style={{width: "60vw", color: "white", height: ".8rem"}} min={1} max={100} value={speed}
+                                onChange={changeEvent => setSpeed(changeEvent.target.value)}
+                            />
+                        </Row>
+                    </>
+                :
+                    <div style={{display: {isTablet}, position: "absolute", top: "0vh", right: "2vh"}}>
+                        <Button variant="light" size="sm" onClick={makeArray}>New Array</Button>
+                        <Form.Label style={{color: "white", marginBottom: "0px"}}>Speed</Form.Label>
+                        <Form.Range disabled={disable} style={{zIndex: "-2", width: "10vw", color: "white", height: ".8rem"}} min={1} max={100} value={speed}
+                            onChange={changeEvent => setSpeed(changeEvent.target.value)}
+                        />
                     </div>
-            }
-        </div>
-                    
+                }
+            </div>
 
+            <div className="array-container">
+                {madArray !== undefined &&
+                        <div className="array">
+                            {madArray.map((value, idx) => {
+                                return (
+                                    <div 
+                                        className="array-bar" 
+                                        key={idx}
+                                        id={idx}
+                                        style={{height: `${value}px`}}
+                                    >
+                                    </div>                        
+                                )
+                            })}
+                        </div>
+                }
+            </div>
         </div>
     )
 }
