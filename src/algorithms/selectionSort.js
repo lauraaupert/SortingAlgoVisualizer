@@ -1,8 +1,7 @@
 let colorArray = [];
 
-function selectionSort(array, speed) {
+function selectionSort(array, speed, disable) {
     let counter = array.length - 1;
-      
       while (counter > 0) {
           let biggest = 0;
           for (let i = 0; i <= counter; i++) {
@@ -13,10 +12,16 @@ function selectionSort(array, speed) {
           counter--;
       }
       runColors(colorArray, speed)
+          // disable.setDisable(true)
+
+      // setTimeout(() => {
+      //   disable.setDisable(false)
+      // }, array.length * speed * 20);
       return array;
   }
 
   function runColors(array, speed) {
+    
     let begin = 0;
 
     for (let num = 0; num < array.length; num++) {

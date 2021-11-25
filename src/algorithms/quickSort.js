@@ -1,10 +1,13 @@
 const colorArray = [];
 
-function quickSort(array, speed) {
+function quickSort(array, speed, disable) {
+  disable.setDisable(true)
+
     quickSortHelper(array, 0, array.length - 1);
     runColors(colorArray, speed)
-    console.log(array)
-    console.log(colorArray)
+    setTimeout(() => {
+      disable.setDisable(false)
+    }, array.length * speed * 35);
       return array;
   }
   

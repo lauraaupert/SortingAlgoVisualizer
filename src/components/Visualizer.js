@@ -8,6 +8,7 @@ import Row from 'react-bootstrap/Row'
 import heapSort from '../algorithms/heapSort'
 import selectionSort from '../algorithms/selectionSort'
 import quickSort from '../algorithms/quickSort'
+import bubbleSort from '../algorithms/bubbleSort'
 
 
 function Visualizer() {
@@ -37,17 +38,17 @@ function Visualizer() {
         window.location.reload();
     }
 
-    function hSort(array, speed) {
-        setDisable(true);
-        let countdown = array.length * speed;
-        console.log(countdown)
+    // function hSort(array, speed) {
+    //     setDisable(true);
+    //     let countdown = array.length * speed;
+    //     console.log(countdown)
 
-        heapSort(array, speed);
-        setTimeout(() => {
-            setDisable(false)
-        }, array.length * speed * 20);
+    //     heapSort(array, speed);
+    //     setTimeout(() => {
+    //         setDisable(false)
+    //     }, array.length * speed * 20);
     
-    }
+    // }
 
     function generateArray() {
         const newArray = [];
@@ -69,27 +70,36 @@ function Visualizer() {
         return Math.floor(Math.random() * (max - min + 1) + min)
     }
 
-    function bubbleSort(array, speed) {
-        setDisable(true)
-        let countdown = array.length * speed;
+    // function bubbleSort(array, speed) {
+    //     setDisable(true)
+    //     let countdown = array.length * speed;
 
-        for (let i = 0; i < array.length - 1; i++) {
-            for (let j = 0; j < array.length -1; j++ ) {
-                setTimeout(() => {
-                    if (array[j] > array[j + 1]) {
-                        [array[j], array[j + 1]] = [array[j + 1], array[j]];
-                        setColorRight(j + 1)
-                        // setMadArray(array)
-                    } else {
-                        setColorRight(400)
-                    }
-                }, i * speed)
-            }
-        }
-        setTimeout(() => {
-            setDisable(false)
-        }, countdown);
-    }
+    //     for (let i = 0; i < array.length - 1; i++) {
+    //         for (let j = 0; j < array.length -1; j++ ) {
+    //             setTimeout(() => {
+    //                 if (array[j] > array[j + 1]) {
+    //                     [array[j], array[j + 1]] = [array[j + 1], array[j]];
+    //                     setColorRight(j + 1)
+    //                     // setMadArray(array)
+    //                 } else {
+    //                     setColorRight(400)
+    //                 }
+    //             }, i * speed)
+    //         }
+    //     }
+    //     setTimeout(() => {
+    //         setDisable(false)
+    //     }, countdown);
+    // }
+
+    // function onSubmit(e) {
+    //     e.preventDefault();
+    //             setDisable(true);
+    //     setTimeout(() => {
+    //         setDisable(false)
+    //     }, fullArray.length * speed * 20);
+
+    // }
 
         
     
@@ -97,17 +107,17 @@ function Visualizer() {
     return( 
         <div>
         <div className="options">
-            <Button variant="light" size="sm" onClick={() => bubbleSort(fullArray, speed)}>Bubble Sort</Button>
-            <Button variant="light" size="sm" onClick={() => hSort(fullArray, speed)}>Heap Sort</Button>
-            <Button variant="light" size="sm" onClick={() => selectionSort(fullArray, speed)}>Selection Sort</Button>
-            <Button variant="light" size="sm" onClick={() => quickSort(fullArray, speed)}>Quick Sort</Button>
+            <Button variant="light" size="sm" onClick={() => bubbleSort(fullArray, speed, {setDisable})}>Bubble Sort</Button>
+            <Button variant="light" size="sm" onClick={() => heapSort(fullArray, speed, {setDisable})}>Heap Sort</Button>
+            <Button variant="light" size="sm" onClick={() => selectionSort(fullArray, speed, {setDisable})}>Selection Sort</Button>
+            <Button variant="light" size="sm" onClick={() => quickSort(fullArray, speed, {setDisable})}>Quick Sort</Button>
             {tablet ? 
             <>
                 <Button variant="light" size="sm" onClick={makeArray}>New Array</Button>
             {/* // ) */}
             {/* <Form.Label style={{color: "white", marginBottom: "0px"}}>Speed</Form.Label> */}
             <Row style={{display: "flex", alignItems:"center", justifyContent: "center"}}>
-            <Form.Range disabled={disable} style={{width: "60vw", color: "white", height: ".8rem"}} min={1} max={500} value={speed}
+            <Form.Range disabled={disable} style={{width: "60vw", color: "white", height: ".8rem"}} min={1} max={100} value={speed}
                 onChange={changeEvent => setSpeed(changeEvent.target.value)}
             />
             </Row>
@@ -119,7 +129,7 @@ function Visualizer() {
             <Button variant="light" size="sm" onClick={makeArray}>New Array</Button>
 
                 <Form.Label style={{color: "white", marginBottom: "0px"}}>Speed</Form.Label>
-                <Form.Range style={{width: "10vw", color: "white", height: ".8rem"}} min={1} max={500} value={speed}
+                <Form.Range disabled={disable} style={{width: "10vw", color: "white", height: ".8rem"}} min={1} max={500} value={speed}
                     onChange={changeEvent => setSpeed(changeEvent.target.value)}
                 />
             </div>
