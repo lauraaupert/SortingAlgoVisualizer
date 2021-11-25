@@ -20,6 +20,7 @@
 
 .options {
     position: absolute;
+    z-index: -1;
     /* display: flex; */
     top: 10vh;
     width: 100vw;

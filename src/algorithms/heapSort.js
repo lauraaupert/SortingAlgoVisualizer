@@ -1,8 +1,15 @@
 let colorArray = [];
+// let disabled;
+
+// function disabling(disabled) {
+//     disabled(true)
+// }
 
 function heapSort(array, speed, disable) {
+    // disabled = disable.setDisable
+    // console.log(disabled)
+    // disabling(disabled)
     let countdown = array.length * speed;
-    // disable.setDisable(true)
     let length = array.length;
     let i = Math.floor(length / 2 - 1);
     let k = length - 1;
@@ -57,12 +64,15 @@ function heapSort(array, speed, disable) {
             // setTimeout(() => {
             //     disable.setDisable(false)
             // }, array.length * speed * 20)
-        })        
+        }) 
+        
+
     // return array;
     // return disable	
 }
 
 function heapify(array, length, i) {
+
     console.log(length, i)
     let largest = i;
     let left = i * 2 + 1;

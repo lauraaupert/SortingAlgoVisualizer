@@ -13,11 +13,16 @@ import bubbleSort from '../algorithms/bubbleSort'
 
 function Visualizer() {
     const [fullArray, setArray] = useState([]);
-    let [colorRight, setColorRight] = useState();
+    // const [colorRight, setColorRight] = useState();
 
     const [madArray, setMadArray] = useState([])
     const [speed, setSpeed] = useState(1);
     const [disable, setDisable] = useState(false)
+    // const [coverDiv, setCoverDiv] = useState("none")
+    // console.log(coverDiv)
+    // const coverDiv = document.getElementById("coverDiv")
+    const options = document.getElementById("options")
+    const stop = document.getElementById("stop")
 
     const [tablet, setTablet] = useState(useMediaQuery({ query: '(max-width: 800px)' }))
 
@@ -25,10 +30,7 @@ function Visualizer() {
     if (tablet) isTablet = "none"
     else isTablet = "block"
 
-    // const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' })
-    // console.log(isTabletOrMobile)
-    // setTablet(isTabletOrMobile)
-    console.log(tablet)
+    console.log(speed)
 
     useEffect(() => {
         generateArray();
@@ -37,18 +39,6 @@ function Visualizer() {
     function makeArray(e) {
         window.location.reload();
     }
-
-    // function hSort(array, speed) {
-    //     setDisable(true);
-    //     let countdown = array.length * speed;
-    //     console.log(countdown)
-
-    //     heapSort(array, speed);
-    //     setTimeout(() => {
-    //         setDisable(false)
-    //     }, array.length * speed * 20);
-    
-    // }
 
     function generateArray() {
         const newArray = [];
@@ -63,34 +53,12 @@ function Visualizer() {
         }
         setArray(newArray);
         setMadArray(newArray)
-        
     }
 
     function randomInteger(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min)
     }
 
-    // function bubbleSort(array, speed) {
-    //     setDisable(true)
-    //     let countdown = array.length * speed;
-
-    //     for (let i = 0; i < array.length - 1; i++) {
-    //         for (let j = 0; j < array.length -1; j++ ) {
-    //             setTimeout(() => {
-    //                 if (array[j] > array[j + 1]) {
-    //                     [array[j], array[j + 1]] = [array[j + 1], array[j]];
-    //                     setColorRight(j + 1)
-    //                     // setMadArray(array)
-    //                 } else {
-    //                     setColorRight(400)
-    //                 }
-    //             }, i * speed)
-    //         }
-    //     }
-    //     setTimeout(() => {
-    //         setDisable(false)
-    //     }, countdown);
-    // }
 
     // function onSubmit(e) {
     //     e.preventDefault();
@@ -101,16 +69,36 @@ function Visualizer() {
 
     // }
 
+    function disabling() {
+        console.log(disable, speed)
+        options.style.display = "none"
+        stop.style.display = "block"
+        setTimeout(() => {
+            options.style.display = "block"
+            stop.style.display = "none"
+        }, speed * fullArray.length * 40);
+        // setCoverDiv("block")
+        console.log(disable, speed)
+    }
+    console.log(document.getElementById("coverDiv"))
+    
+
         
     
 
     return( 
         <div>
-        <div className="options">
+            <div id="stop" style={{display: "none"}}>
+            <Button variant="light" size="sm" onClick={makeArray}>Go Back</Button>
+
+            </div>
+        <div className="options" id="options">
+            <div onClick={() => disabling()}>
             <Button variant="light" size="sm" onClick={() => bubbleSort(fullArray, speed, {setDisable})}>Bubble Sort</Button>
             <Button variant="light" size="sm" onClick={() => heapSort(fullArray, speed, {setDisable})}>Heap Sort</Button>
             <Button variant="light" size="sm" onClick={() => selectionSort(fullArray, speed, {setDisable})}>Selection Sort</Button>
             <Button variant="light" size="sm" onClick={() => quickSort(fullArray, speed, {setDisable})}>Quick Sort</Button>
+            </div>
             {tablet ? 
             <>
                 <Button variant="light" size="sm" onClick={makeArray}>New Array</Button>
@@ -129,13 +117,13 @@ function Visualizer() {
             <Button variant="light" size="sm" onClick={makeArray}>New Array</Button>
 
                 <Form.Label style={{color: "white", marginBottom: "0px"}}>Speed</Form.Label>
-                <Form.Range disabled={disable} style={{width: "10vw", color: "white", height: ".8rem"}} min={1} max={500} value={speed}
+                <Form.Range disabled={disable} style={{zIndex: "-2", width: "10vw", color: "white", height: ".8rem"}} min={1} max={100} value={speed}
                     onChange={changeEvent => setSpeed(changeEvent.target.value)}
                 />
             </div>
             // )
             }
-
+            {/* < /Form> */}
             {/* <div style={{position: "absolute", display: "flex", flexDirection: "column", top: "0vh", right: "2vh"}}>
             <Button variant="light" size="sm" onClick={makeArray}>New Array</Button>
 
@@ -151,36 +139,19 @@ function Visualizer() {
             {madArray !== undefined &&
                     <div className="array">
                     {madArray.map((value, idx) => {
-                        // console.log(value, idx)
                         return (
-                            idx === colorRight ?
                             <div 
-                            className="array-bar" 
-                            key={idx}
-                            id={idx}
-                            style={{height: `${value}px`, backgroundColor: "green"}}
-                            >
-                                {/* {idx} */}
-                        </div>
-                        :
-                        idx !== 100 &&
-                        <div 
                             className="array-bar" 
                             key={idx}
                             id={idx}
                             style={{height: `${value}px`}}
                             >
-                                {/* {idx} */}
-                        </div>
-                        
-                        
+                            </div>                        
                         )
                         })}
                     </div>
-                    // :
-
-}
-                </div>
+            }
+        </div>
                     
 
         </div>
