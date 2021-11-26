@@ -10,6 +10,8 @@ import selectionSort from '../algorithms/selectionSort'
 import quickSort from '../algorithms/quickSort'
 import bubbleSort from '../algorithms/bubbleSort'
 
+import generateArray from '../algorithms/generateArray'
+
 
 function Visualizer() {
     const [fullArray, setArray] = useState([]);
@@ -26,31 +28,31 @@ function Visualizer() {
     else isTablet = "block"
 
     useEffect(() => {
-        generateArray();
+        generateArray(tablet, {setArray, setMadArray});
     }, [])
 
     function makeArray(e) {
         window.location.reload();
     }
 
-    function generateArray() {
-        const newArray = [];
-        if (!tablet) {
-            for (let i = 0; i < 100; i++) {
-                newArray.push(randomInteger(5, 500));
-            }
-        } else {
-            for (let i = 0; i < 60; i++) {
-                newArray.push(randomInteger(5, 500));
-            }
-        }
-        setArray(newArray);
-        setMadArray(newArray)
-    }
+    // function generateArray() {
+    //     const newArray = [];
+    //     if (!tablet) {
+    //         for (let i = 0; i < 100; i++) {
+    //             newArray.push(randomInteger(5, 500));
+    //         }
+    //     } else {
+    //         for (let i = 0; i < 60; i++) {
+    //             newArray.push(randomInteger(5, 500));
+    //         }
+    //     }
+    //     setArray(newArray);
+    //     setMadArray(newArray)
+    // }
 
-    function randomInteger(min, max) {
-        return Math.floor(Math.random() * (max - min + 1) + min)
-    }
+    // function randomInteger(min, max) {
+    //     return Math.floor(Math.random() * (max - min + 1) + min)
+    // }
 
     function disabling() {
         options.style.display = "none"
@@ -60,10 +62,6 @@ function Visualizer() {
             stop.style.display = "none"
         }, speed * fullArray.length * 40);
     }
-    
-
-        
-    
 
     return( 
         <div>
@@ -72,10 +70,10 @@ function Visualizer() {
             </div>
             <div className="options" id="options">
                 <div onClick={() => disabling()}>
-                    <Button variant="light" size="sm" onClick={() => bubbleSort(fullArray, speed, {setDisable})}>Bubble Sort</Button>
-                    <Button variant="light" size="sm" onClick={() => heapSort(fullArray, speed, {setDisable})}>Heap Sort</Button>
-                    <Button variant="light" size="sm" onClick={() => selectionSort(fullArray, speed, {setDisable})}>Selection Sort</Button>
-                    <Button variant="light" size="sm" onClick={() => quickSort(fullArray, speed, {setDisable})}>Quick Sort</Button>
+                    <Button variant="light" size="sm" onClick={() => bubbleSort(fullArray, speed)}>Bubble Sort</Button>
+                    <Button variant="light" size="sm" onClick={() => heapSort(fullArray, speed)}>Heap Sort</Button>
+                    <Button variant="light" size="sm" onClick={() => selectionSort(fullArray, speed)}>Selection Sort</Button>
+                    <Button variant="light" size="sm" onClick={() => quickSort(fullArray, speed)}>Quick Sort</Button>
                 </div>
                 {tablet ? 
                     <>

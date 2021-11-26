@@ -1,8 +1,12 @@
+import generateArray from "./generateArray";
+
 let colorArray = [];
 
-
-function bubbleSort(array, speed, disable) {
-    let countdown = array.length * speed * 20;
+function bubbleSort(array, speed) {
+    // if (arrayIsSorted(array)) {
+    //     console.log("sorted")
+    //     generateArray(tablet, {setArray, setMadArray})
+    // }
     let counter = 0;
     let isSorted = false;
     while (!isSorted) {
@@ -20,9 +24,9 @@ function bubbleSort(array, speed, disable) {
 }
 
 function runColors(array, speed) {
+    console.log("running colors!")
     array.forEach((item, index) => {
         setTimeout(() => {
-            
             const [bar1idx, bar2idx, bar1value, bar2value] = item;
             const bar1 = document.getElementById(bar1idx);
             const bar2 = document.getElementById(bar2idx);
@@ -49,6 +53,17 @@ function runColors(array, speed) {
         }, index * speed);
     })
 }
+
+function arrayIsSorted(array) {
+    let sorted = true;
+    for (let i = 0; i < array.length - 1; i++) {
+        if (array[i + 1] < array[i]) {
+            sorted = false;
+        }
+    }
+    return sorted;
+}
+
 
 export default bubbleSort;
 
